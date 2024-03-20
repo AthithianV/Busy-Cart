@@ -4,8 +4,7 @@ import AuthContext from "./context/authContext";
 import Home from "./pages/Home/Home";
 import Order from "./pages/Order/Order";
 import Cart from "./pages/Cart/Cart";
-import SignIn from "./pages/SignIn/SignIn";
-import SignUp from "./pages/SignUp/SignUp";
+import Form from "./pages/Form/Form";
 import CustomProductContext from "./context/ProductContext";
 
 function App() {
@@ -21,8 +20,22 @@ function App() {
         { index: true, element: <Home /> },
         { path: "/orders", element: <Order /> },
         { path: "/cart", element: <Cart /> },
-        { path: "/sign-in", element: <SignIn /> },
-        { path: "/sign-up", element: <SignUp /> },
+        {
+          path: "/sign-in",
+          element: (
+            <AuthContext>
+              <Form forSignIn={true} />
+            </AuthContext>
+          ),
+        },
+        {
+          path: "/sign-up",
+          element: (
+            <AuthContext>
+              <Form forSignIn={false} />
+            </AuthContext>
+          ),
+        },
       ],
     },
   ]);

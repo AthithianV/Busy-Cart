@@ -1,0 +1,41 @@
+
+.form{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 50px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: solid 1px grey;
+    box-shadow:  0 0 0.5rem -0.1rem grey;
+}
+
+.input{
+    margin: 5px 0 20px 0;
+    font-size: 1.2rem;
+    padding: 8px;
+    border-radius: 10px;
+    border: solid 2px black;
+}
+
+.btn{
+    font-size: 1.3rem;
+    padding: 8px;
+    border-radius: 10px;
+    border: solid 2px purple;
+    background-color: purple;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.btn:hover{
+    background-color:  white;
+    color: purple;
+}
+
+.link{
+    text-decoration: underline;
+    font-weight: 600;
+}

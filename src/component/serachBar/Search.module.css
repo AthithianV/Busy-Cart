@@ -1,0 +1,35 @@
+.search {
+    margin: 25px 0;
+    width: 100%;
+    text-align: center;
+}
+
+.searchInput {
+    width: 50%;
+    font-size: 1.2rem;
+    padding: 8px;
+    border-radius: 5px;
+    border: 2px purple solid;
+}
+
+.searchInput:focus{
+    border: 2px red solid;
+}
+
+.searchBtn{
+    background-color: purple;
+    border-radius: 5px;
+    color: white;
+    padding: 8px;
+    font-size: 1.1rem;
+    margin: 0 5px;
+    border: none;
+    cursor: pointer;
+    border: 2px solid purple;
+    box-sizing: border-box;
+}
+
+.searchBtn:hover{
+    color: purple;
+    background-color: #fff;
+}

@@ -24,17 +24,17 @@ export default function Nav(){
                 </div>
                 <div className={styles.right}>
                     <ul className={styles.navList}>
-                        <NavLink to="/" className={styles.navItem} style={({isActive})=>isActive?{color: "blue"}: null}>
+                        <NavLink to="/" className={styles.navItem} style={({isActive})=>isActive?{color: "red"}: null}>
                                 <img className={styles.icon} src="https://cdn-icons-png.flaticon.com/128/1946/1946436.png" alt="Home icon"/>
                                 <span className={styles.navTitle}>Home</span>
                         </NavLink>
                         {/* If logged in cart and order is shown in the nav bar */}
                         {isLogin
-                            ?<><NavLink to="/orders" className={styles.navItem} style={({isActive})=>isActive?{color: "blue"}: null}>
+                            ?<><NavLink to="/orders" className={styles.navItem} style={({isActive})=>isActive?{color: "red"}: null}>
                                 <img className={styles.icon} src="https://cdn-icons-png.flaticon.com/128/726/726568.png" alt="Orders icon"/>
                                 <span className={styles.navTitle}>My Orders</span>
                             </NavLink>
-                            <NavLink to="/cart" className={styles.navItem} style={({isActive})=>isActive?{color: "blue"}: null}>
+                            <NavLink to="/cart" className={styles.navItem} style={({isActive})=>isActive?{color: "red"}: null}>
                                     <img className={styles.icon} src="https://cdn-icons-png.flaticon.com/128/3514/3514491.png" alt="Cart icon"/>
                                     <span className={styles.navTitle}>My Cart</span>
                             </NavLink>
@@ -42,7 +42,7 @@ export default function Nav(){
                             :<></>
                             }
                         {/* Icon and Link for Auth - on click redirect to Sign page*/}
-                            <NavLink to={isLogin?"/sign-in":"/sign-out"} className={styles.navItem} style={({isActive})=>isActive?{color: "blue"}: null}>
+                            <NavLink to={!isLogin?"/sign-in":"/sign-out"} className={styles.navItem} style={({isActive})=>isActive?{color: "red"}: null}>
                                 <img className={styles.icon} 
                                 src={!isLogin?"https://cdn-icons-png.flaticon.com/128/25/25245.png":"https://cdn-icons-png.flaticon.com/128/9297/9297112.png"} 
                                 alt="sign out icon"/>

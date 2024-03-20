@@ -5,6 +5,7 @@
     height: 75px;
     box-shadow: 0 0.25rem 0.5rem -0.4rem black;
     padding: 0 20px;
+    background-color: white;
 }
 
 /* Style for lists in nav bar */
@@ -47,14 +48,15 @@
     align-items: end;
     font-size: 1.2rem;
     font-weight: 600;
+    padding-bottom: 3px;
 }
 
 .navItem:hover{
-    color: blue;
+    color: grey;
 }
 
 .active{
-    color: blue;
+    color: red;
 }
 
 /* Sizing of image */
