@@ -1,6 +1,6 @@
 .card{
     max-width: 325px;
-    height: 600px;
+    height: 550px;
     margin: 20px;
     padding: 30px;
     box-sizing: border-box;
@@ -30,7 +30,7 @@
 }
 
 .title{
-    margin: 2px 0;
+    margin: 10px 0;
     height: 40px;
     word-wrap: break-word;
     text-overflow:ellipsis;
@@ -38,11 +38,25 @@
     color: rgba(0, 0, 0, 0.7);
 }
 
+.priceTag{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .price{
     margin: 0;
     font-size: 1.3rem;
     margin: 10px 0;
 }
+
+.tag{
+    background-color: white;
+    color: purple;
+    padding: 3px 5px;
+    border-radius: 5px;
+    border: 1px solid purple;
+}   
 
 .btn{
     width: 100%;

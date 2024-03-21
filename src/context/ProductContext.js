@@ -3,11 +3,14 @@ import {
   and,
   collection,
   getDocs,
+  limit,
+  orderBy,
   query,
   where,
 } from "firebase/firestore";
 import { createContext, useContext, useEffect, useState } from "react";
 import db from "../firebase/firebase";
+import data from "../data/data.json";
 
 const productContext = createContext();
 
@@ -20,14 +23,33 @@ export default function CustomProductContext({ children }) {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(0);
   const [price, setPrice] = useState(50000);
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState({
+    "men's clothing": false,
+    "women's clothing": false,
+    jewelery: false,
+    electronics: false,
+  });
+
+  useEffect(() => {
+    getProducts();
+  }, [price, categories]);
 
   async function getProducts() {
-    console.log(price);
-    const q = query(
-      collection(db, "Product"),
-      where("price", "<=", Number(price))
-    );
+    // let q = query(
+    //   collection(db, "Products"),
+    //   where("price", "<=", Number(price))
+    // );
+
+    // const keys = Object.keys(categories);
+    // const categoriesFilter = keys.filter((k) => categories[k]);
+    // if (categoriesFilter.length != 0) {
+    //   q = query(
+    //     collection(db, "Products"),
+    //     where("category", "in", categoriesFilter)
+    //   );
+    // }
+
+    let q = query(collection(db, "Products"), limit(2));
 
     const querySnapshot = await getDocs(q);
     const p = [];
@@ -36,9 +58,11 @@ export default function CustomProductContext({ children }) {
     console.log(p);
   }
 
-  useEffect(() => {
-    getProducts();
-  }, [price]);
+  function handleCategory(cat) {
+    const temp = { ...categories };
+    temp[cat] = !temp[cat];
+    setCategories(temp);
+  }
 
   function handlePrice(p) {
     setPrice(p);
@@ -46,7 +70,15 @@ export default function CustomProductContext({ children }) {
 
   return (
     <productContext.Provider
-      value={{ products, page, setPage, price, handlePrice }}
+      value={{
+        products,
+        page,
+        setPage,
+        setCategories,
+        price,
+        handlePrice,
+        handleCategory,
+      }}
     >
       {children}
     </productContext.Provider>

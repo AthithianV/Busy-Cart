@@ -49,6 +49,7 @@
     font-size: 1.2rem;
     font-weight: 600;
     padding-bottom: 3px;
+    cursor: pointer;
 }
 
 .navItem:hover{
@@ -64,4 +65,21 @@
     height: 25px;
     width: 25px;
     margin-right: 5px;
+}
+
+@media screen and (max-width: 800px) {
+    .navItem{
+        margin: 5px;
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .navItem {
+            margin: 15px;
+        }
+
+    .navTitle {
+        display: none;
+    }
 }

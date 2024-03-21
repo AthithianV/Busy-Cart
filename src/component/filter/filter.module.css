@@ -4,9 +4,11 @@
     align-items: center;
     padding: 5px;
     border-radius: 10px;
+    width: 70%;
     min-width: 200px;
-    color: white;
+    color: black;
     font-size: 1.1rem;
+    margin: auto;
 }
 
 
@@ -17,10 +19,20 @@
     flex-direction: column;
     width: 20%;
     border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: white;
+    border: 1px solid purple;
     box-sizing: border-box;
     min-height: 100px;
     justify-content: space-around;
+    align-items: center;
+}
+
+.priceInput{
+    width: 50%;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 5px;
 }
 
 .title{
@@ -34,7 +46,8 @@
     margin: 5px;
     border-radius: 10px;
     min-height: 100px;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid purple;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -52,5 +65,5 @@
 }
 
 .checkBox{
-    margin: 5px;
+    margin: 5px;;
 }

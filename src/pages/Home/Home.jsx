@@ -16,11 +16,11 @@ export default function Home(){
             <div className={styles.container}>
                 {products.map((product, index)=><Card key={index} product={product}/>)}
             </div>
-            <div className={styles.btnContainer}>
+            {/* <div className={styles.btnContainer}>
                 <button onClick={()=>{setPage(page-1)}} className={styles.btn}>{"<<"}</button>
                 <span className={styles.page}>{page+1}</span>
                 <button onClick={()=>{setPage(page+1)}} className={styles.btn}>{">>"}</button>
-            </div>
+            </div> */}
         </main>
     );
 } 

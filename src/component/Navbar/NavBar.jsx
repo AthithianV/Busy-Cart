@@ -4,7 +4,7 @@ import { useAuth } from "../../context/authContext";
 
 export default function Nav(){
 
-    const {isLogin} = useAuth();
+    const {isLogin, handleSignOut} = useAuth();
     return (
         <>
         {/* Navigation bar */}
@@ -42,12 +42,19 @@ export default function Nav(){
                             :<></>
                             }
                         {/* Icon and Link for Auth - on click redirect to Sign page*/}
-                            <NavLink to={!isLogin?"/sign-in":"/sign-out"} className={styles.navItem} style={({isActive})=>isActive?{color: "red"}: null}>
+                            {!isLogin?
+                            <NavLink to={"/sign-in"} className={styles.navItem} style={({isActive})=>isActive?{color: "red"}: null}>
                                 <img className={styles.icon} 
-                                src={!isLogin?"https://cdn-icons-png.flaticon.com/128/25/25245.png":"https://cdn-icons-png.flaticon.com/128/9297/9297112.png"} 
-                                alt="sign out icon"/>
-                                <span className={styles.navTitle}>{!isLogin?"Sign in":"Sign out"}</span>
+                                src="https://cdn-icons-png.flaticon.com/128/9297/9297112.png"
+                                alt="sign in icon"/>
+                                <span className={styles.navTitle}>{"Sign in"}</span>
                             </NavLink>
+                            :<div className={styles.navItem} onClick={handleSignOut}>
+                                <img className={styles.icon} 
+                                src="https://cdn-icons-png.flaticon.com/128/25/25245.png"
+                                alt="sign out icon"/>
+                                <span className={styles.navTitle}>{"Sign Out"}</span>
+                            </div>}
                     </ul>
                 </div>
             </nav>

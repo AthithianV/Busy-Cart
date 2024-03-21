@@ -4,14 +4,13 @@ import { useProduct } from "../../context/ProductContext"
 
 export default function Filter(){
 
-    const {price, handlePrice} = useProduct();
+    const {price, handlePrice, handleCategory} = useProduct();
 
     return <form className={styles.filter}>
 
             <div className={styles.price}>
                 <h3 className={styles.title}>Filter</h3>
-                <label>Price: {price}</label>
-                <input type="range" min="1" max="100000" step="10" value={price} onChange={(e)=>{handlePrice(e.target.value)}}/>            
+                <input className={styles.priceInput} type="number" value={price} onChange={(e)=>{handlePrice(e.target.value)}}/>            
             </div>
 
             <div className={styles.catContainer}>
@@ -19,19 +18,19 @@ export default function Filter(){
                 <div className={styles.categories}>
                     
                     <div className={styles.catItem}>
-                        <input className={styles.checkBox}  type="checkbox" name="mensclothing" id="mensclothing"/>
+                        <input className={styles.checkBox} onChange={()=>handleCategory("men's clothing")}  type="checkbox" name="mensclothing" id="mensclothing"/>
                         <label htmlFor="mensclothing">Men's Clothing</label>
                     </div>
                     <div className={styles.catItem}>
-                        <input className={styles.checkBox} type="checkbox" name="womensclothing" id="womensclothing"/>
+                        <input className={styles.checkBox} onChange={()=>handleCategory("women's clothing")} type="checkbox" name="womensclothing" id="womensclothing"/>
                         <label htmlFor="womensclothing">Women's Clothing</label>
                     </div>
                     <div className={styles.catItem}>
-                        <input className={styles.checkBox} type="checkbox" name="jewelery" id="jewelery"/>
+                        <input className={styles.checkBox} onChange={()=>handleCategory("jewelery")} type="checkbox" name="jewelery" id="jewelery"/>
                         <label htmlFor="jewelery">Jewelery</label>
                     </div>
                     <div className={styles.catItem}>
-                        <input className={styles.checkBox} type="checkbox" name="electronics" id="electronics"/>
+                        <input className={styles.checkBox} onChange={()=>handleCategory("electronics")} type="checkbox" name="electronics" id="electronics"/>
                         <label htmlFor="electronics">Electronics</label>
                     </div>
                 </div>
