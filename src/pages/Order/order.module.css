@@ -1,0 +1,62 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    margin: auto;
+}
+
+.empty{
+    padding: 20px;
+    background-color: white;
+    border: 1px solid red;
+    color: red;
+    border-radius: 10px;
+}
+
+.title{
+    text-align: center;
+}
+
+.data{
+    margin: 5px;
+    padding: 15px;
+    text-align: center;
+    background-color: white;
+}
+
+.header{
+    margin: 5px;
+    padding: 10px 40px;
+    background-color: purple;
+    color: white;
+}
+
+.topRight{
+    border-radius: 0 10px 0 0;
+}
+
+.bottomLeft{
+    border-radius: 0 0 0 10px;
+}
+
+.name{
+    width: 300px;
+    border-radius: 10px 0 0 0;
+}
+
+.totalPrice{
+    /* background-color: green; */
+    border-radius:  0 0 10px 0;
+    font-weight: 700;
+}
+
+@media screen and (max-width: 500px) {
+    .name{
+        width: 50%;
+    }
+    .header{
+        padding: 10px 20px;
+    }
+}
+

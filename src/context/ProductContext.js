@@ -10,7 +10,7 @@ import {
 } from "firebase/firestore";
 import { createContext, useContext, useEffect, useState } from "react";
 import db from "../firebase/firebase";
-import data from "../data/data.json";
+import { toast } from "react-toastify";
 
 const productContext = createContext();
 
@@ -23,6 +23,8 @@ export default function CustomProductContext({ children }) {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(0);
   const [price, setPrice] = useState(50000);
+  const [isLoading, setIsLoading] = useState(false);
+  const [search, setSearch] = useState("");
   const [categories, setCategories] = useState({
     "men's clothing": false,
     "women's clothing": false,
@@ -35,27 +37,29 @@ export default function CustomProductContext({ children }) {
   }, [price, categories]);
 
   async function getProducts() {
-    // let q = query(
-    //   collection(db, "Products"),
-    //   where("price", "<=", Number(price))
-    // );
+    setIsLoading(true);
 
-    // const keys = Object.keys(categories);
-    // const categoriesFilter = keys.filter((k) => categories[k]);
-    // if (categoriesFilter.length != 0) {
-    //   q = query(
-    //     collection(db, "Products"),
-    //     where("category", "in", categoriesFilter)
-    //   );
-    // }
+    let q = query(
+      collection(db, "Products"),
+      where("price", "<=", Number(price))
+    );
 
-    let q = query(collection(db, "Products"), limit(2));
+    const keys = Object.keys(categories);
+    const categoriesFilter = keys.filter((k) => categories[k]);
+    if (categoriesFilter.length != 0) {
+      q = query(
+        collection(db, "Products"),
+        where("category", "in", categoriesFilter)
+      );
+    }
 
     const querySnapshot = await getDocs(q);
     const p = [];
-    querySnapshot.forEach((doc) => p.push(doc.data()));
+    querySnapshot.forEach((doc) =>
+      p.push({ productId: doc.id, ...doc.data() })
+    );
     setProducts(p);
-    console.log(p);
+    setIsLoading(false);
   }
 
   function handleCategory(cat) {
@@ -78,6 +82,7 @@ export default function CustomProductContext({ children }) {
         price,
         handlePrice,
         handleCategory,
+        isLoading
       }}
     >
       {children}

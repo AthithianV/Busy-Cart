@@ -1,0 +1,47 @@
+.main {
+    max-width: 1500px;
+    min-width: 750px;
+    margin: auto;
+}
+
+.empty {
+    padding: 20px;
+    background-color: white;
+    border: 1px solid red;
+    color: red;
+    border-radius: 10px;
+    width: fit-content;
+    margin: 30px auto;
+}
+
+.header{
+    display: flex;
+    background-color: white;
+    border: 1px solid purple;
+    border-radius: 10px;
+    width: 50%;
+    margin: auto;
+    margin-top: 25px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.cartItems{
+    display: flex;
+    justify-content: center;
+}
+
+.btn{
+    padding: 5px 10px;
+    border-radius: 5px;
+    border:  2px solid purple;
+    background-color: purple;
+    font-size: 1.2rem;
+    color: white;
+    cursor: pointer;
+}
+
+.btn:hover{
+    color: purple;
+    background: white;
+}

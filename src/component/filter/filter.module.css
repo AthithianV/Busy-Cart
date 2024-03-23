@@ -65,5 +65,28 @@
 }
 
 .checkBox{
-    margin: 5px;;
+    margin: 5px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) {
+    .filter{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .filter{
+        flex-direction: column;
+    }
+    .price{
+        width: 70%;
+    }
+    .catContainer{
+        width: 70%;
+    }
+    .categories {
+        flex-direction: column;
+        text-align: center;
+    }
 }

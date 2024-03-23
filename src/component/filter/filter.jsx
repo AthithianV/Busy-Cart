@@ -10,7 +10,7 @@ export default function Filter(){
 
             <div className={styles.price}>
                 <h3 className={styles.title}>Filter</h3>
-                <input className={styles.priceInput} type="number" value={price} onChange={(e)=>{handlePrice(e.target.value)}}/>            
+                <input className={styles.priceInput} type="number" placeholder="Price" onChange={(e)=>{handlePrice(e.target.value)}}/>            
             </div>
 
             <div className={styles.catContainer}>

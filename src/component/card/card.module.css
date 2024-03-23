@@ -75,3 +75,53 @@
     background-color: #fff;
     color: purple;
 }
+
+.removeBtn{
+    width: 100%;
+        padding: 10px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border-radius: 5px;
+        border: 2px solid rgb(229, 2, 2);
+        background-color: rgb(229, 2, 2);
+        color: white;
+        cursor: pointer;
+        margin: 10px 0;
+}
+
+.removeBtn:hover {
+    background-color: #fff;
+    color: red;
+}
+
+.countContainer{
+    font-size: 1.2rem;
+}
+
+.countBtn{
+    border: 2px black solid;
+    background-color: black;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.3rem;
+}
+
+.countBtn:hover{
+    background-color: white;
+    color: black;
+}
+
+.plus{
+    border-radius: 0 5px 5px 0;
+    padding: 2px 7px;
+}
+.minus {
+    border-radius: 5px 0 0 5px;
+    padding: 2px 8px;
+}
+
+.quantity{
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+    padding: 4px 6px;
+}

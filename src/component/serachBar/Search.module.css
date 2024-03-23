@@ -33,3 +33,10 @@
     color: purple;
     background-color: #fff;
 }
+
+@media screen and (max-width: 750px) {
+
+    .searchInput {
+        width: 60%;
+    }
+}

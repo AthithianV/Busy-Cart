@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 import styles from "./Form.module.css";
 import { useRef } from "react";
 import { useAuth } from "../../context/authContext";
+import Spinner from "react-spinner-material";
 
 export default function SignIn({ forSignIn }) {
-  const { isLogin, setName, setEmail, setPassword, handleSubmit } = useAuth();
+  const { isLogin, isLoading, setName, setEmail, setPassword, handleSubmit } =
+    useAuth();
 
   return (
     <form className={styles.form}>
@@ -18,6 +20,7 @@ export default function SignIn({ forSignIn }) {
           className={styles.input}
           placeholder="Name"
           type="text"
+          required
         />
       ) : null}
 
@@ -28,6 +31,7 @@ export default function SignIn({ forSignIn }) {
         className={styles.input}
         placeholder="Email"
         type="email"
+        required
       />
 
       <input
@@ -37,6 +41,7 @@ export default function SignIn({ forSignIn }) {
         className={styles.input}
         placeholder="Password"
         type="password"
+        required
       />
 
       <button
@@ -44,7 +49,13 @@ export default function SignIn({ forSignIn }) {
         onClick={(e) => handleSubmit(e, forSignIn)}
         type="submit"
       >
-        {forSignIn ? "Sign In" : "Sign Up"}
+        {isLoading ? (
+          <Spinner style={{margin: "auto"}} radius={30} color={"#fff"} stroke={4} visible={true} />
+        ) : forSignIn ? (
+          "Sign In"
+        ) : (
+          "Sign Up"
+        )}
       </button>
 
       <div className={styles.redirect}>
