@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import styles from "./Form.module.css";
-import { useRef } from "react";
 import { useAuth } from "../../context/authContext";
 import Spinner from "react-spinner-material";
 
@@ -12,6 +11,7 @@ export default function SignIn({ forSignIn }) {
     <form className={styles.form}>
       <h1 className={styles.title}>Sign In</h1>
 
+      {/* if forSignin is true input field for name is showm */}
       {!forSignIn ? (
         <input
           onChange={(e) => {
@@ -50,7 +50,13 @@ export default function SignIn({ forSignIn }) {
         type="submit"
       >
         {isLoading ? (
-          <Spinner style={{margin: "auto"}} radius={30} color={"#fff"} stroke={4} visible={true} />
+          <Spinner
+            style={{ margin: "auto" }}
+            radius={30}
+            color={"#fff"}
+            stroke={4}
+            visible={true}
+          />
         ) : forSignIn ? (
           "Sign In"
         ) : (
@@ -58,6 +64,7 @@ export default function SignIn({ forSignIn }) {
         )}
       </button>
 
+      {/* link for redirecting user from sign in to sign up and vice versa */}
       <div className={styles.redirect}>
         <span>
           {forSignIn ? "Do not have account? " : "Already Have Account? "}

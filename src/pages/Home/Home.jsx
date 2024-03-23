@@ -1,5 +1,6 @@
 import Filter from "../../component/filter/filter";
 import Search from "../../component/serachBar/Search";
+
 import styles from "./home.module.css"
 import stlyes from "./home.module.css"
 import { useProduct } from "../../context/ProductContext";
@@ -30,7 +31,7 @@ export default function Home(){
             </div>
             :
             <>
-            <Search />
+            {/* <Search /> */}
             <Filter />
             <div className={styles.container}>
                 {products.map((product, index)=><Card key={index} product={product} cart={false}/>)}

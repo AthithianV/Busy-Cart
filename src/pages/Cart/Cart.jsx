@@ -1,6 +1,10 @@
-import Search from "../../component/serachBar/Search";
+// import for style
 import styles from "./Cart.module.css"
+
+// custome hook from cart context
 import { useCart } from "../../context/cartContext";
+
+// Cart compoent
 import Card from "../../component/card/card"
 import { useNavigate } from "react-router-dom";
 import Spinner from "react-spinner-material";
@@ -12,6 +16,7 @@ export default function Cart(){
 
     return (
         <main className={styles.main}>
+            {/* if cart length is 0, cart is empty message is shown, else cart items are shown. */}
             {
                 cart.length==0
                 ?<h1 className={styles.empty}>You cart is Empty</h1>

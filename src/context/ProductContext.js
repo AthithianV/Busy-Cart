@@ -1,3 +1,4 @@
+// import for firebase
 import {
   addDoc,
   and,
@@ -8,17 +9,23 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { createContext, useContext, useEffect, useState } from "react";
 import db from "../firebase/firebase";
-import { toast } from "react-toastify";
 
+
+// import for hooks
+import { createContext, useContext, useEffect, useState } from "react";
+
+// Creation of product context.
 const productContext = createContext();
 
+// Custom hook for getting states and functions from product context.
 export function useProduct() {
   const value = useContext(productContext);
   return value;
 }
 
+
+// Custome product context.
 export default function CustomProductContext({ children }) {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(0);
@@ -32,18 +39,22 @@ export default function CustomProductContext({ children }) {
     electronics: false,
   });
 
+  // hook to render, the products on changing price and categories states
   useEffect(() => {
     getProducts();
   }, [price, categories]);
 
+  // Functions for getting products from db
   async function getProducts() {
     setIsLoading(true);
 
+    // Query for price.
     let q = query(
       collection(db, "Products"),
       where("price", "<=", Number(price))
     );
 
+    // Query for categories.
     const keys = Object.keys(categories);
     const categoriesFilter = keys.filter((k) => categories[k]);
     if (categoriesFilter.length != 0) {
@@ -53,6 +64,7 @@ export default function CustomProductContext({ children }) {
       );
     }
 
+    // getDocs for getting documents using query q.
     const querySnapshot = await getDocs(q);
     const p = [];
     querySnapshot.forEach((doc) =>
@@ -62,6 +74,7 @@ export default function CustomProductContext({ children }) {
     setIsLoading(false);
   }
 
+  // Function to handle categories, when user choose a category
   function handleCategory(cat) {
     const temp = { ...categories };
     temp[cat] = !temp[cat];

@@ -14,6 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ErrorPage from "./pages/Error/ErrorPage";
 
 function App() {
+  // Router is created.
   const router = createBrowserRouter([
     {
       path: "",
@@ -77,6 +78,7 @@ function App() {
 
   return (
     <div className="App">
+      {/* router is pass a props to Router provider. */}
       <ToastContainer position="bottom-right" />
       <CustomProductContext>
         <RouterProvider router={router}></RouterProvider>
