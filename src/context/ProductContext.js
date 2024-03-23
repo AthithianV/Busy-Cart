@@ -11,7 +11,6 @@ import {
 } from "firebase/firestore";
 import db from "../firebase/firebase";
 
-
 // import for hooks
 import { createContext, useContext, useEffect, useState } from "react";
 
@@ -23,7 +22,6 @@ export function useProduct() {
   const value = useContext(productContext);
   return value;
 }
-
 
 // Custome product context.
 export default function CustomProductContext({ children }) {
@@ -42,12 +40,13 @@ export default function CustomProductContext({ children }) {
   // hook to render, the products on changing price and categories states
   useEffect(() => {
     getProducts();
+  }, []);
+
+  useEffect(() => {
+    getProductsWithFilter();
   }, [price, categories]);
 
-  // Functions for getting products from db
-  async function getProducts() {
-    setIsLoading(true);
-
+  async function getProductsWithFilter() {
     // Query for price.
     let q = query(
       collection(db, "Products"),
@@ -66,6 +65,19 @@ export default function CustomProductContext({ children }) {
 
     // getDocs for getting documents using query q.
     const querySnapshot = await getDocs(q);
+    const p = [];
+    querySnapshot.forEach((doc) =>
+      p.push({ productId: doc.id, ...doc.data() })
+    );
+    setProducts(p);
+  }
+
+  // Functions for getting products from db
+  async function getProducts() {
+    setIsLoading(true);
+
+    // getDocs for getting documents using query q.
+    const querySnapshot = await getDocs(collection(db, "Products"));
     const p = [];
     querySnapshot.forEach((doc) =>
       p.push({ productId: doc.id, ...doc.data() })
@@ -95,7 +107,7 @@ export default function CustomProductContext({ children }) {
         price,
         handlePrice,
         handleCategory,
-        isLoading
+        isLoading,
       }}
     >
       {children}
