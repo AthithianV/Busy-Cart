@@ -76,6 +76,11 @@
 }
 
 @media screen and (max-width: 650px) {
+
+    .nav{
+        width: 100%;
+    }
+    
     .navItem {
             margin: 15px;
         }
