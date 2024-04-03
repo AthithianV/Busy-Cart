@@ -1,14 +1,5 @@
 // import for firebase
-import {
-  addDoc,
-  and,
-  collection,
-  getDocs,
-  limit,
-  orderBy,
-  query,
-  where,
-} from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import db from "../firebase/firebase";
 
 // import for hooks

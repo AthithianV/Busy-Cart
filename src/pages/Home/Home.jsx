@@ -1,15 +1,26 @@
 import Filter from "../../component/filter/filter";
-import Search from "../../component/serachBar/Search";
-
 import styles from "./home.module.css"
 import stlyes from "./home.module.css"
-import { useProduct } from "../../context/ProductContext";
 import Card from "../../component/card/card";
 import { LineWave } from 'react-loader-spinner'
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { authChange } from "../../redux/reducer/userReducer";
+import { getProducts, getProductsWithFilter, productSelector } from "../../redux/reducer/productReducer";
 
 export default function Home(){
 
-    const {products, page, setPage, isLoading} = useProduct();
+    const {products, isLoading, price, categories} = useSelector(productSelector);
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch(getProductsWithFilter({categories, price}));
+    }, [price, categories]);
+
+    useEffect(() => {
+        dispatch(authChange());
+        dispatch(getProducts());
+    }, []);
 
     return (
 

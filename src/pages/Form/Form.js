@@ -1,11 +1,40 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Form.module.css";
-import { useAuth } from "../../context/authContext";
 import Spinner from "react-spinner-material";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  signIn,
+  signUp,
+  userSelector,
+} from "../../redux/reducer/userReducer";
+import { useEffect, useState } from "react";
 
 export default function SignIn({ forSignIn }) {
-  const { isLogin, isLoading, setName, setEmail, setPassword, handleSubmit } =
-    useAuth();
+  // Local State
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  // State from redux
+  const { user, isLoading } = useSelector(userSelector);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (forSignIn) {
+      dispatch(signIn({ email, password }));
+    } else {
+      dispatch(signUp({ name, email, password }));
+    }
+  }
+
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [dispatch, user]);
 
   return (
     <form className={styles.form}>
@@ -46,14 +75,14 @@ export default function SignIn({ forSignIn }) {
 
       <button
         className={styles.btn}
-        onClick={(e) => handleSubmit(e, forSignIn)}
+        onClick={(e) => handleSubmit(e)}
         type="submit"
       >
         {isLoading ? (
           <Spinner
             style={{ margin: "auto" }}
             radius={30}
-            color={"#fff"}
+            color={"#000"}
             stroke={4}
             visible={true}
           />
@@ -69,7 +98,7 @@ export default function SignIn({ forSignIn }) {
         <span>
           {forSignIn ? "Do not have account? " : "Already Have Account? "}
         </span>
-        <Link className={styles.link} to="/sign-up">
+        <Link className={styles.link} to={forSignIn ? "/sign-up" : "/sign-in"}>
           {!forSignIn ? "Sign In" : "Sign Up"}
         </Link>
       </div>

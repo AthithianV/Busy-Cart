@@ -1,10 +1,14 @@
 import { NavLink, Outlet } from "react-router-dom";
 import styles from "./NavBar.module.css"
 import { useAuth } from "../../context/authContext";
+import { useDispatch, useSelector } from "react-redux";
+import { signOutHandle, userSelector } from "../../redux/reducer/userReducer";
 
 export default function Nav(){
 
-    const {isLogin, handleSignOut} = useAuth();
+    const {user} = useSelector(userSelector);
+    const dispatch = useDispatch();
+
     return (
         <>
         {/* Navigation bar */}
@@ -15,7 +19,7 @@ export default function Nav(){
                         {/* Logo  - on click redirect to home page*/}
                         <NavLink to="/" className={styles.navBrand}>
                             <img className={styles.logoicon} src="https://cdn-icons-png.flaticon.com/128/2430/2430422.png" alt="logo"/>
-                            <span className={styles.logo}>BusyBuy</span>
+                            <span className={styles.logo}>BusyCart</span>
                         </NavLink>
 
                         {/* Icon and Link for home - on click redirect to home page */}
@@ -29,7 +33,7 @@ export default function Nav(){
                                 <span className={styles.navTitle}>Home</span>
                         </NavLink>
                         {/* If logged in cart and order is shown in the nav bar */}
-                        {isLogin
+                        {user
                             ?<><NavLink to="/orders" className={styles.navItem} style={({isActive})=>isActive?{color: "red"}: null}>
                                 <img className={styles.icon} src="https://cdn-icons-png.flaticon.com/128/726/726568.png" alt="Orders icon"/>
                                 <span className={styles.navTitle}>My Orders</span>
@@ -42,14 +46,14 @@ export default function Nav(){
                             :<></>
                             }
                         {/* Icon and Link for Auth - on click redirect to Sign page*/}
-                            {!isLogin?
+                            {!user?
                             <NavLink to={"/sign-in"} className={styles.navItem} style={({isActive})=>isActive?{color: "red"}: null}>
                                 <img className={styles.icon} 
                                 src="https://cdn-icons-png.flaticon.com/128/9297/9297112.png"
                                 alt="sign in icon"/>
                                 <span className={styles.navTitle}>{"Sign in"}</span>
                             </NavLink>
-                            :<div className={styles.navItem} onClick={handleSignOut}>
+                            :<div className={styles.navItem} onClick={()=>dispatch(signOutHandle())}>
                                 <img className={styles.icon} 
                                 src="https://cdn-icons-png.flaticon.com/128/25/25245.png"
                                 alt="sign out icon"/>

@@ -32,7 +32,7 @@
 
 .btn:hover{
     background-color:  white;
-    color: purple;
+    color: purple !important;
 }
 
 .link{

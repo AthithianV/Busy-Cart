@@ -12,6 +12,8 @@ import CustomOrderContext from "./context/orderContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ErrorPage from "./pages/Error/ErrorPage";
+import { Provider, useDispatch } from "react-redux";
+import store from "./redux/store";
 
 function App() {
   // Router is created.
@@ -19,11 +21,7 @@ function App() {
     {
       path: "",
       errorElement: <ErrorPage />,
-      element: (
-        <AuthContext>
-          <Nav />
-        </AuthContext>
-      ),
+      element: <Nav />,
       children: [
         {
           index: true,
@@ -79,10 +77,12 @@ function App() {
   return (
     <div className="App">
       {/* router is pass a props to Router provider. */}
-      <ToastContainer position="bottom-right" />
-      <CustomProductContext>
-        <RouterProvider router={router}></RouterProvider>
-      </CustomProductContext>
+      <Provider store={store}>
+        <ToastContainer position="top-center" />
+        <CustomProductContext>
+          <RouterProvider router={router}></RouterProvider>
+        </CustomProductContext>
+      </Provider>
     </div>
   );
 }
