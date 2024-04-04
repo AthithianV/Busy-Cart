@@ -7,9 +7,9 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { addDoc, collection, doc, getDocs, setDoc } from "firebase/firestore";
-import db from "../../firebase/firebase";
-import { notifySuccess } from "../../Notification/success";
-import { notifyError } from "../../Notification/error";
+import db from "../../../firebase/firebase";
+import { notifySuccess } from "../../../Notification/success";
+import { notifyError } from "../../../Notification/error";
 
 const initialState = { isLoading: false, user: null };
 
@@ -31,16 +31,24 @@ export const signUp = createAsyncThunk("user/signUp", async (payload) => {
     );
 
     const docName = getDocName(payload.email);
-
-    console.log(docName);
-
-    console.log(db);
-
     // A new Doc with user.uid and name is added to Users Collection.
     await setDoc(doc(db, "Users", docName), {
       userName: payload.name,
       email: payload.email,
       userId: userCredential.user.uid,
+    });
+
+    await setDoc(doc(db, "Carts", docName), {
+      userName: payload.name,
+      email: payload.email,
+      products: [],
+      totalPrice: 0,
+    });
+
+    await setDoc(doc(db, "Orders", docName), {
+      userName: payload.name,
+      email: payload.email,
+      orders: [],
     });
 
     return docName;
@@ -137,7 +145,7 @@ const userSlice = createSlice({
 
       // Handling authChange thunk
       .addCase(authChange.fulfilled, (state, action) =>
-        signInFullfilled(state, action, "Login Successfull!!!")
+        signInFullfilled(state, action)
       )
 
       // Handling signOut thunk

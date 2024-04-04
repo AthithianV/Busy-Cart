@@ -14,6 +14,12 @@
     margin: 30px auto;
 }
 
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .header{
     display: flex;
     background-color: white;

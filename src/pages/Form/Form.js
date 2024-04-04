@@ -6,7 +6,7 @@ import {
   signIn,
   signUp,
   userSelector,
-} from "../../redux/reducer/userReducer";
+} from "../../redux/reducer/userReducer/userReducer";
 import { useEffect, useState } from "react";
 
 export default function SignIn({ forSignIn }) {

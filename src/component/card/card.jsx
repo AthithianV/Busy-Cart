@@ -1,21 +1,19 @@
-// Import for hooks
-import { useEffect, useState } from "react";
-import {useAuth} from "../../context/authContext";
-
-// Import for cartContext
-import { useCart } from "../../context/cartContext";
-
 // Style module import.
 import styles from "./card.module.css";
 
 // Import for spinner.
 import Spinner from "react-spinner-material";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, cartSelector, deleteFromCart, quantityHandle } from "../../redux/reducer/cartReducer/cartThunks";
+import { userSelector } from "../../redux/reducer/userReducer/userReducer";
 
 
-export default function Card({product, cart}){
+export default function Card({product, cart, index}){
 
     // Get states from cart Context.
-    const {addToCart, deleteFromCart, handleQuantity, cardLoader} = useCart();
+    const { cardLoader} = useSelector(cartSelector);
+    const dispatch = useDispatch();
+    const {user} = useSelector(userSelector);
 
     const title = product.title;
     const category  = product.category;
@@ -34,24 +32,29 @@ export default function Card({product, cart}){
             {cart
                 // Container for Quantity button, both button calls handleQuantity function onClick.
                 ?<div className={styles.countContainer}>
-                    <button onClick={()=>handleQuantity(product, -1)} className={`${styles.countBtn} ${styles.minus}`}>&#45;</button>
+                    <button onClick={()=>dispatch(quantityHandle({product, change: -1, user, index}))} className={`${styles.countBtn} ${styles.minus}`}>&#45;</button>
                     <span className={styles.quantity}>{product.quantity}</span>
-                    <button onClick={()=>handleQuantity(product, +1)} className={`${styles.countBtn} ${styles.plus}`}>&#43;</button>
+                    <button onClick={()=>dispatch(quantityHandle({product, change: 1, user, index}))} className={`${styles.countBtn} ${styles.plus}`}>&#43;</button>
                 </div>
                 :<span className={styles.tag}>{category[0].toUpperCase() + category.substring(1)}</span>}
-            <h4 className={styles.price}>$ {product.price}</h4>
+            <h4 className={styles.price}>$ {product.price.toFixed(2)}</h4>
         </div>
 
 
         {/* On conditional rendering, if cart is true, delete button is shown else add to cart button is shown */}
         {cart
-            ?<button onClick={()=>deleteFromCart(product)} className={styles.removeBtn} type="button">
+            ?<button 
+                onClick={()=>{
+                    if(window.confirm("Are you sure you want to delete?")) 
+                        dispatch(deleteFromCart({product, user, index}))
+                    }} 
+                className={styles.removeBtn} type="button">
                 {
                 cardLoader === product.id
                     ? <Spinner style={{margin: "auto"}} radius={25} color={"#000"} stroke={4} visible={true} />
                     :"Remove From Cart"}
                 </button>
-            :<button onClick={()=>addToCart(product)} className={styles.btn} type="button">
+            :<button onClick={()=>dispatch(addToCart({user, product}))} className={styles.btn} type="button">
                 {cardLoader === product.id
                     ?<Spinner style={{margin: "auto"}} radius={25} color={"#000"} stroke={4} visible={true} />
                     :"Add To Cart"}

@@ -111,7 +111,7 @@ export default function CustomCartContext({ children }) {
     setCardLaoder(product.id);
 
     // Get the index of the product.
-    const index = cart.findIndex((p) => p.id == product.id);
+    const index = cart.findIndex((p) => p.id === product.id);
     if (index > -1) {
       // update quantity and total price.
       cart[index].quantity = cart[index].quantity + change;

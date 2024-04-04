@@ -1,13 +1,13 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import styles from "./NavBar.module.css"
-import { useAuth } from "../../context/authContext";
 import { useDispatch, useSelector } from "react-redux";
-import { signOutHandle, userSelector } from "../../redux/reducer/userReducer";
+import { signOutHandle, userSelector } from "../../redux/reducer/userReducer/userReducer";
 
 export default function Nav(){
 
     const {user} = useSelector(userSelector);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     return (
         <>
@@ -53,7 +53,7 @@ export default function Nav(){
                                 alt="sign in icon"/>
                                 <span className={styles.navTitle}>{"Sign in"}</span>
                             </NavLink>
-                            :<div className={styles.navItem} onClick={()=>dispatch(signOutHandle())}>
+                            :<div className={styles.navItem} onClick={()=>{dispatch(signOutHandle()); navigate("/")}}>
                                 <img className={styles.icon} 
                                 src="https://cdn-icons-png.flaticon.com/128/25/25245.png"
                                 alt="sign out icon"/>

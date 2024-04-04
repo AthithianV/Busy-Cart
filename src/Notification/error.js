@@ -30,6 +30,10 @@ export const notifyError = (errCode) => {
       toast.error("Invalid EmailID or Password");
       break;
 
+    case "unath":
+      toast.error("Sign in Required");
+      break;
+
     default:
       toast.error("Oops, Something Went Wrong");
       break;

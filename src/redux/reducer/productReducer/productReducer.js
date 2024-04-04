@@ -1,9 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import db from "../../../firebase/firebase";
+import { notifyError } from "../../../Notification/error";
 
 // Initial State.
 const initialState = {
   products: [],
-  price: null,
+  price: 0,
   searchKey: "",
   categories: {
     "men's clothing": false,
@@ -36,7 +39,7 @@ export const getProductsWithFilter = createAsyncThunk(
     // Query for categories.
     const keys = Object.keys(categories);
     const categoriesFilter = keys.filter((k) => categories[k]);
-    if (categoriesFilter.length != 0) {
+    if (categoriesFilter.length !== 0) {
       q = query(
         collection(db, "Products"),
         where("category", "in", categoriesFilter)
@@ -70,7 +73,7 @@ const productSlice = createSlice({
   reducers: {
     // Reducer for setting categoies
     setCategory: (state, action) => {
-      state.categories[action.payload] = true;
+      state.categories[action.payload] = !state.categories[action.payload];
     },
     // Reducer for setting price
     setPrice: (state, action) => {
@@ -81,11 +84,13 @@ const productSlice = createSlice({
     builder
       .addCase(getProducts.fulfilled, (state, action) => {
         state.products = action.payload;
+        state.isLoading = false;
       })
       .addCase(getProducts.pending, handleLoading)
       .addCase(getProducts.rejected, handleError)
       .addCase(getProductsWithFilter.fulfilled, (state, action) => {
         state.products = action.payload;
+        state.isLoading = false;
       })
       .addCase(getProductsWithFilter.pending, handleLoading)
       .addCase(getProductsWithFilter.rejected, handleError);
