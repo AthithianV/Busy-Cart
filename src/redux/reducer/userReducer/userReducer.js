@@ -62,11 +62,7 @@ export const signUp = createAsyncThunk("user/signUp", async (payload) => {
 export const signIn = createAsyncThunk("user/signIn", async (payload) => {
   try {
     // Sign in with email and password.
-    const userCredential = await signInWithEmailAndPassword(
-      auth,
-      payload.email,
-      payload.password
-    );
+    await signInWithEmailAndPassword(auth, payload.email, payload.password);
 
     const docName = getDocName(payload.email);
 

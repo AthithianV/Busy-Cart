@@ -34,7 +34,7 @@ export default function SignIn({ forSignIn }) {
     if (user) {
       navigate("/");
     }
-  }, [dispatch, user]);
+  }, [dispatch, user, navigate]);
 
   return (
     <form className={styles.form}>

@@ -9,7 +9,7 @@ export default function ErrorPage(){
         setInterval(()=>{
             navigate("/");
         }, 3000);
-    }, [])
+    }, [navigate])
 
     return (
         <main>

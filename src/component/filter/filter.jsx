@@ -1,7 +1,7 @@
 // imports for styles
 import styles from "./filter.module.css"
-import { useDispatch, useSelector } from "react-redux";
-import { actions, productSelector } from "../../redux/reducer/productReducer/productReducer";
+import { useDispatch } from "react-redux";
+import { actions } from "../../redux/reducer/productReducer/productReducer";
 
 export default function Filter(){
 
