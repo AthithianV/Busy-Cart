@@ -6,7 +6,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { addDoc, collection, doc, getDocs, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import db from "../../../firebase/firebase";
 import { notifySuccess } from "../../../Notification/success";
 import { notifyError } from "../../../Notification/error";

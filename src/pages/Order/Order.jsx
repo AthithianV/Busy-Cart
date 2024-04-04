@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useOrder } from "../../context/orderContext";
 import styles from "./order.module.css"
 import { getOrders, orderSelector } from "../../redux/reducer/orderReducer/orderReducer";
 import { useEffect } from "react";
@@ -37,7 +36,7 @@ export default function Order(){
                 lastLineColor=""
                 />
             </div>
-            :orders.length==0
+            :orders.length===0
                 ?<h1 className={styles.empty}>No orders Found!</h1>
                 :<>
                     <h1>Your Orders</h1>

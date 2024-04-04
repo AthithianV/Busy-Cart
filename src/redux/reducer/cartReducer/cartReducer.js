@@ -55,7 +55,7 @@ const cartSlice = createSlice({
       // Add to cart fullfilled, new cart is set to state and total price is calculated.
       .addCase(addToCart.fulfilled, (state, action) => {
         state.cardLoader = null;
-        if (action.payload == "exists") {
+        if (action.payload === "exists") {
           toast.warning("Item already exists in Cart");
         } else {
           notifySuccess("Added to Cart");

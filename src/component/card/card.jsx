@@ -21,7 +21,7 @@ export default function Card({product, cart, index}){
 
         {/* Image container */}
         <div className={styles.imgContainer}>
-            <img  src={product.image} className={styles.img}/>
+            <img  src={product.image} className={styles.img} alt="poster"/>
         </div>
 
         {/* Title, the size of title is set to 30 characters */}

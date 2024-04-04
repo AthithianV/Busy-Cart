@@ -6,7 +6,6 @@ import { actions, productSelector } from "../../redux/reducer/productReducer/pro
 export default function Filter(){
 
     // Destructiong the state from product context.
-    const {price} = useSelector(productSelector);
     const dispatch = useDispatch();
 
     return <form onSubmit={(e)=>e.preventDefault()} className={styles.filter}>
