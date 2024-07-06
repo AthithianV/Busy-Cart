@@ -1,5 +1,5 @@
 # Deployment
-https://busy-cart-athithian.netlify.app/
+https://busy-cart.netlify.app/
 
 # Getting Started with Create React App
 
